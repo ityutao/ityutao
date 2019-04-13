@@ -106,6 +106,7 @@ public class TestUserController {
             System.out.println(object.get("error_code")+":"+object.get("reason"));
             result.setStatus(false);
             result.setMsg(object.get("reason").toString());
+            System.out.println("1111111111111111");
         }
         return result;
     }
