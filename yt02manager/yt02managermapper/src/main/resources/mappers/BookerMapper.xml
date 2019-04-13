@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itany.mapper.BookMapper">
+    <resultMap id="111" type="com.itany.pojo.Book">
+        <id property="id" column="id"></id>
+        <result column="bookname" property="bookName" />
+        <result column="author"  property="author" />
+        <result column="publishdate"  property="publishDate"/>
+        <result column="groupprice"  property="groupPrice"/>
+        <result column="price"  property="price"/>
+        <result column="format"  property="format"/>
+        <result column="pagenumber"  property="pageNumber"/>
+        <result column="ISBN"  property="ISBN"/>
+        <result column="barcode"  property="barcode"/>
+        <result column="layout"  property="layout"/>
+        <result column="printingnumber"  property="printingNumber"/>
+        <result column="register"  property="register"/>
+        <result column="weight"  property="weight"/>
+        <result column="bookintroduce"  property="bookIntroduce"/>
+        <result column="catalog"  property="catalog"/>
+        <result column="typeid"  property="typeId"/>
+        <result column="createtime"  property="createTime"/>
+        <result column="number"  property="number"/>
+        <result column="imgurl"  property="imgUrl"/>
+        <result column="flag"  property="flag"/>
+        <result column="recommend"  property="recommend"/>
+        <association property="press" column="pressid" javaType="com.itany.pojo.Press">
+            <id property="id" column="tp.id"></id>
+            <result property="name" column="tp.name"></result>
+        </association>
+        <association property="bookSupplier" column="id" javaType="com.itany.pojo.BookSupplier">
+            <id column="tbs.id" property="id"></id>
+        </association>
+        <association property="supplier" column="supplierid" javaType="com.itany.pojo.Supplier">
+            <id column="ts.id" property="id"></id>
+            <result property="name" column="ts.name"></result>
+        </association>
+    </resultMap>
+    <sql id="bookId">
+        t.id,bookname, author, publishdate, groupprice, price, format,
+        pagenumber, ISBN, barcode, layout, printingnumber, register,
+        weight, bookintroduce, authorintroduce, catalog, typeid,
+        t.createtime, pressid, t.number, imgurl, t.flag, recommend,tp.id 'tp.id',tp.name 'tp.name',
+        tbs.id 'tbs.id',ts.id 'ts.id',ts.name 'ts.name'
+    </sql>
+    <select id="selectFindFuzz" parameterType="com.itany.pojo.Book" resultMap="111" >
+        select <include refid="bookId"></include>
+        from t_book t
+        inner join t_press tp on t.pressid = tp.id
+        inner join t_book_supplier tbs on t.id = tbs.bookid
+        inner join t_supplier ts on tbs.supplierid = ts.id
+        <where>
+        <if test="bookName !=null and bookName!='' ">
+        and bookname like concat('%',#{bookName},'%')
+        </if>
+        <if test="ISBN !=null and ISBN !='' ">
+        and ISBN like concat('%',#{ISBN},'%')
+        </if>
+        </where>
+    </select>
+
+    <insert id="insertBook" parameterType="com.itany.pojo.Book" useGeneratedKeys="true" keyProperty="id">
+        insert into
+          t_book
+        (bookname, groupprice, price, ISBN, layout,register,weight,bookintroduce,authorintroduce,
+         number,imgurl,pressid,flag)
+        values
+        (#{bookName},#{groupPrice},#{price},#{ISBN},#{layout},#{register},#{weight},
+        #{bookIntroduce},#{authorIntroduce},#{number},#{imgUrl},#{pressId},#{flag})
+    </insert>
+
+    <select id="selectByISBN" parameterType="com.itany.pojo.Book" resultType="com.itany.pojo.Book">
+        select
+          id,bookname, author, publishdate, groupprice, price, format,
+        pagenumber, ISBN, barcode, layout, printingnumber, register,
+        weight, bookintroduce, authorintroduce, catalog, typeid,
+        createtime, pressid, number, imgurl, flag, recommend
+        from
+          t_book
+        where
+          ISBN=#{ISBN};
+    </select>
+    <update id="updateEnable" parameterType="Book">
+        update
+          t_book
+        set
+          flag=#{flag}
+        where
+          id=#{id}
+    </update>
+    <update id="updateDisable" parameterType="Book">
+        update
+          t_book
+        set
+          flag=#{flag}
+        where
+          id=#{id}
+    </update>
+
+    <select id="selectById" parameterType="com.itany.pojo.Book" resultType="com.itany.pojo.Book">
+        select
+
+            id,bookname, author,  groupprice, price, ISBN, layout,
+            bookintroduce,authorintroduce, pressid,imgurl, flag,number
+        from
+            t_book
+        where
+            id=#{id}
+    </select>
+
+    <update id="updateById" parameterType="com.itany.pojo.Book">
+        update
+          t_book
+        <set>
+            <if test=" bookName !=null and bookName!='' ">
+                bookname=#{bookName},
+            </if>
+            <if test=" price !=null and price!='' ">
+                price=#{price},
+            </if>
+            <if test="number!=null and number !=''">
+                number= #{number},
+            </if>
+            <if test=" groupPrice !=null and groupPrice!='' ">
+                groupprice=#{groupPrice},
+            </if>
+            <if test=" bookIntroduce !=null and bookIntroduce!='' ">
+                bookintroduce=#{bookIntroduce},
+            </if>
+            <if test=" authorIntroduce !=null and authorIntroduce!='' ">
+                authorintroduce=#{authorIntroduce},
+            </if>
+            <if test=" imgUrl !=null and imgUrl!='' ">
+                imgurl=#{imgUrl},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+    
+
+</mapper>

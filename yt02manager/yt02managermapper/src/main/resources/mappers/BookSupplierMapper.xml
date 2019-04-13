@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itany.mapper.BookSupplierMapper">
+    <insert id="insertBookSupplier" parameterType="com.itany.pojo.BookSupplier">
+        insert into
+          t_book_supplier
+          (bookid, supplierid, sellnum, number)
+        values
+          (#{bookId}, #{supplierId}, #{sellNum},#{number})
+    </insert>
+
+
+    <select id="selectByBookIdAndSupplierId" parameterType="BookSupplier" resultType="com.itany.pojo.BookSupplier">
+		select id,bookid,supplierid,sellnum,number
+		from t_book_supplier
+		where bookid = #{bookId} and supplierid = #{supplierId}
+	</select>
+
+    <update id="updateBookSupplier" parameterType="BookSupplier">
+		update t_book_supplier
+		set number = #{number}
+		where  bookid = #{bookId} and supplierid = #{supplierId}
+	</update>
+
+</mapper>

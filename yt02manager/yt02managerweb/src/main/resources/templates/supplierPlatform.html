@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>审核列表(平台)</title>
+    <link rel="stylesheet" type="text/css" href="/manager/easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="/manager/easyui/themes/icon.css">
+    <script type="text/javascript" src="/manager/easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="/manager/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript">
+	    //工具栏
+	    var toolbar = [{
+	        text: '审核',
+	        iconCls: 'icon-edit',
+	        handler: function () {
+	            $('#dd').dialog('open');
+	        }
+	    }];
+	   $(function(){
+	       $('#booklist').datagrid({  
+				title:'审核列表',  
+				iconCls:'icon-save',   
+				url:'/manager/examine/findAll',
+				columns:[
+				    [
+					{field:'title',title:'审核标题',width:100,align:'center'},
+					{field:'info',title:'审核详情',width:200,align:'center'},
+					{field:'flag',title:'审核状态',width:80,align:'center',formatter:function(value){
+                            var str="";
+                            if(1==value){
+                                str="审核通过";
+                            }
+                            if(3==value){
+                                str="审核不通过";
+                            }
+                            if(2==value){
+                                str="待审核";
+                            }
+                            return str;
+                        }},
+					{field:'book',title:'书籍详情',width:200,align:'center',formatter:function(value,row,index){
+					          return "<a href=''>查看</a>";
+					}}					
+				]
+                ],
+				toolbar: toolbar,  
+				pagination: true,//表示在datagrid设置分页              
+               	pageSize: 5,
+				singleSelect:true,
+                pageList: [5,10,20]
+			});
+
+		 //初始化查询栏
+		 $("#submit_search").linkbutton({ iconCls: 'icon-search', plain: true })
+            .click(function () {
+                $('#booklist').datagrid({
+                    queryParams:{
+                        bookName:$('#bookName').val(),
+                        ISBN:$('#ISBN').val()
+                    }
+                });   //点击搜索
+            });
+          
+          //初始化修改窗口  
+         $('#dd').dialog({
+			    title: 'My Dialog',
+			    width: 700,
+			    height: 500,
+			    closed: true,
+			    cache: false,
+			    href: '',
+			    modal: true,
+			    iconCls: 'icon-save',
+                buttons: [{
+                    text:'提交',
+                    iconCls:'icon-ok',
+                    handler:function(){
+                        var row = $('#booklist').datagrid('getSelected');
+                        console.log(row);
+                        $("#id").val(row.id);
+                        $("#bookId").val(row.bookId);
+                        $("#number").val(row.number);
+                        $("#supplierId").val(row.supplierId);
+                        $.ajax({
+                            type:"post",
+                            url:"/manager/examine/modifyFlag",
+                            dataType:"json",
+                            data:$("#ff").serialize(),
+                            success:function (data) {
+                                if(data.status){
+                                    location.reload();
+                                }else{
+                                    alert(data.msg);
+                                }
+                            }
+                        })
+                    }
+                },{
+                    text:'关闭',
+                    handler:function(){
+                        alert('cancel');;
+                    }
+                }]
+			});
+
+           $.ajax({
+               type:"post",
+               url:"/manager/supplier/findAll",
+               dataType:"json",
+               success:function (data) {
+                   if(data.status){
+                       var list = data.data;
+                       for (var i=0;i<list.length;i++) {
+                           $("#search_type").html(
+                               $("#search_type").html() +'<option value='+list[i].id+' >'+list[i].name+'</option>'
+                           )
+                       }
+                   }else{
+                       alert(data.msg);
+                   }
+               }
+           });
+
+            
+	   });
+	</script>
+</head>
+<body>
+   <form name="searchform" method="post" action="" id ="searchform">
+    <td width="70" height="30"><strong>审核查询：</strong></td>
+    <td height="30">
+        <input type="text" name="bookName" id="bookName" size=20 placeholder="书籍名称"/>
+        <input type="text" name="ISBN" id="ISBN" size=20 placeholder="ISBN"/>
+		<select name="search_type" id="search_type" >
+            <option value="-1">请选择供应商</option>
+
+        </select>
+    </td>
+	<td>
+	  <button type="button">查询</button>
+	</td>
+  </form>
+  <table id="booklist"></table>
+    <div id="dd">
+           <div align="center" style="margin-top: 30px">
+            <form id="ff" method="post"> 
+             <table>
+			    <tr>
+				   <td>
+				      审核状态:
+				   </td>
+				   <td>
+                       <input id="bookId" name="bookId" type="hidden">
+                       <input id="id" name="id" type="hidden">
+                       <input id="number" name="number" type="hidden">
+                       <input id="supplierId" name="supplierId" type="hidden">
+						<select name="flag" id="flag" style="width:100px">
+							<option value="1">通过</option>
+							<option value="3">不通过</option>
+						</select>
+				   </td>
+				</tr>
+				<tr style="vertical-align:top">
+				   <td>
+				      审核详情:
+				   </td>
+				   <td>
+				     <textarea rows="10" cols="30" name="info" id="info"></textarea>
+				   </td>
+				</tr>
+			 </table>			
+        </form>
+           </div>
+    </div>
+</body>
+</html>

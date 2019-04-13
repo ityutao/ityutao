@@ -1,0 +1,93 @@
+body{
+	background: #F8F8F8;
+}
+.login-body{
+	height:700px;
+	margin-top: 25px;
+	background: white;
+	padding:60px 120px 0;
+}
+.login-title{
+	width:100px;
+	height:26px;
+	line-height: 26px;
+	border-left:4px solid red;
+}
+.login-title h2{
+	padding-left: 10px;
+}
+
+.login-content input::-webkit-input-placeholder{
+	font-size: 14px;
+
+}
+.am-form-group{
+	margin-top: 30px;
+}
+.code{
+	width:80px;
+	height:35px;
+	line-height: 35px;
+	text-align: center;
+	border: 1px solid #000;
+	position: relative;
+	left:180px;
+	top:-55px;
+}
+.change{
+	position: relative;
+	left:270px;
+	top:-105px;
+}
+.am-btn{
+	background: red;
+	height:45px;
+	color:white;
+	position: relative;
+	left:126px;
+	top:-65px;
+}
+
+.forget{
+	display: flex;
+	justify-content: space-between;
+	margin-top: -70px;
+	font-size: 13px;
+}
+span a{
+	color:gray;
+}
+.weibo{
+	/*border: 1px solid #000;*/
+	font-size: 14px;
+	display: flex;
+	justify-content: space-between;
+}
+.weibo .weibo-img{
+	width: 40px;
+	height: 40px;
+	position: relative;
+	top: -3px;
+}
+.weibo .qq-img{
+	width: 22px;
+	height: 22px;
+	position: relative;
+	top: 5px;
+}
+.weibo .qq-text{
+	position: relative;
+	top: 6px;
+	left:4px;
+}
+.foot{
+	list-style: none;
+	font-size:14px;
+	height:40px;
+	position: relative;
+	line-height: 40px;
+	top:20px;
+}
+.foot li{
+	height:40px;
+}

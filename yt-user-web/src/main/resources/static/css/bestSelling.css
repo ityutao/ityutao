@@ -1,0 +1,217 @@
+@charset "utf-8";
+.base-shop-foot {
+    margin-top: 0px;
+}
+.cx-bg{
+    background-color: #F8F8F8;
+    padding-bottom: 30px;
+}
+.cx-seach{
+    padding-left: 0px;
+}
+.cx-seach-line{
+    position: relative;
+    border-bottom: 1px solid #ccc;
+}
+.cx-seach-menu h4{
+    display: inline-block;
+    width: 88px;
+    height: 40px;
+    line-height: 40px;
+    color: #666;
+    font-weight: bold;
+    font-size: 14px;
+    font-family: "Microsoft YaHei";
+    margin: 0px;
+    position: absolute;
+    text-align: center;
+}
+.cx-seach-menu ul{
+    display: inline-block;
+    list-style: none;
+    line-height: 40px;
+    font-size: 14px;
+    padding: 0px;
+    margin: 0px;
+    padding-left: 88px;
+}
+.cx-seach-menu li{
+    display: inline-block;
+    cursor: pointer;
+    margin: 0 38px 0 0;
+}
+.cx-seach-menu .cx-active{
+    color: #ff5500;
+}
+.cx-best-types{
+    padding: 0px;
+}
+.cx-best-types li{
+    padding: 0px;
+    border: none;
+}
+.cx-best-types li dl{
+    margin: 0px 0px 4px 0px;
+}
+.cx-best-types li dl dt{
+    font-size: 14px;
+    padding-left: 1.5rem;
+    line-height: 30px;
+    background-color: #19a7f0;
+    color: white;
+    cursor: pointer;
+}
+.cx-best-types li dl dt span{
+    position: absolute;
+    right: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    width: 20px;
+    text-align: center;
+}
+.cx-best-types li dl dd{
+    font-size: 12px;
+    padding-left: 2rem;
+}
+.cx-best-types li dl dd span{
+    display: block;
+    line-height: 26px;
+    cursor: pointer;
+}
+.cx-best-types li dl dd span:hover{
+    color: #00b6f0;
+    font-weight: bold;
+}
+.cx-best-types li dl .cur{
+    color: #fffc00;
+}
+.cx-best-types li dl .cur span{
+    color:white;
+}
+.cx-best-types li dl dd .cura{
+    color: #00b6f0;
+    font-weight: bold;
+}
+
+.cx-list{
+    padding-top: 10px;
+}
+.cx-list .book{
+    position: relative;
+    height: 236px;
+}
+.cx-list .book-num{
+    position: absolute;
+    left: -1px;
+    top: -1px;
+    width: 43px;
+    height: 30px;
+    background: url("../img/base/sprit.png") no-repeat 0px -35px;
+    line-height: 28px;
+    text-align: center;
+}
+.cx-list .book-num.book-red{
+    background: url("../img/base/sprit.png") no-repeat 0px 0px;
+}
+.cx-list .book-num span{
+    font-size: 15px;
+    font-family: Arial;
+    text-align: center;
+    font-weight: bold;
+    color: #333;
+}
+.cx-list .ps-newBook{
+    background: url(../img/base/newBook.png) no-repeat 0px 0px;
+    width: 42px;
+    height: 42px;
+    position: absolute;
+    top: -4px;
+    left: -4px;
+}
+.cx-list .book-num.book-red span{
+    color: #ffffff;
+}
+.cx-list .book-img{
+    width: 50%;
+    float: left;
+    text-align: center;
+}
+.cx-list .book-img img{
+    width: 200px;
+    height: 200px;
+}
+.cx-list .book-info{
+    width: 50%;
+    vertical-align: top!important;
+    float: left;
+    padding: 0px 10px;
+}
+.cx-list .book-info .name{
+    font-size: 16px;
+    height: 20px;
+    overflow: hidden;
+    font-weight: normal;
+    line-height: 20px;
+    margin-bottom: 10px;
+}
+.cx-list .book-info .author,.cx-list .book-info .publisher{
+    height: 22px;
+    line-height: 22px;
+    overflow: hidden;
+    font-size: 10px;
+    color: rgb(153, 153, 153);
+}
+.cx-list .book-info .publisher{
+    margin-bottom: 4px;
+}
+.cx-list .book-info .startWrap{
+    margin-bottom: 6px;
+}
+.cx-list .book-info .startWrap img{
+    width: 20px;
+    padding-left: -13px;
+    margin-left: -10px;
+}
+.cx-list .book-info .startWrap span{
+    color: #eb3838;
+    font-size: 12px;
+    vertical-align: middle!important;
+}
+.cx-list .book-info .startWrap img:first-child{
+    margin-left: -4px;
+}
+
+.cx-list .book-info .priceWrap {
+    height: 24px;
+    line-height: 24px;
+    vertical-align: bottom;
+    margin-bottom: 26px;
+}
+.cx-list .book-info .priceWrap span.sellPrice {
+    font-size: 18px;
+    color: #e60000;
+    font-family: 'Microsoft YaHei';
+}
+.cx-list .book-info .priceWrap span.discount {
+    color: #666;
+    font-family: 'Microsoft YaHei';
+    margin-right: 10px;
+    margin-top: 1px;
+    font-size: 10px;
+}
+.cx-list .book-info .priceWrap span.priceTit {
+    font-family: 'Microsoft YaHei';
+    margin-top: 2px;
+    margin-right: 2px;
+    color: #999;
+    font-size: 10px; 
+}
+.cx-list .book-info .priceWrap del {
+    font-family: 'Microsoft YaHei';
+    color: #999;
+    margin-top: 2px;
+    font-size: 10px;  
+}
+.cx-list .book-info .oparateButton{
+    text-align: left;
+}

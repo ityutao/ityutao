@@ -1,0 +1,134 @@
+@charset "utf-8";
+.topbar-shop-nav{
+  border-bottom: 4px solid #ff5000;
+}
+.topbar-shop-types{
+  background-color: #ff5000;
+  text-align: center;
+  color: white;
+  height: 36px;
+}
+.topbar-shop-types h4{
+  margin: 0px;
+  height: 36px;
+  line-height: 36px;
+  cursor: pointer;
+}
+.topbar-shop-class li{
+  padding-bottom: 0px;
+  text-align: center;
+  height: 36px;
+  line-height: 36px;
+}
+.topbar-shop-class li a,.topbar-shop-class li a:focus{
+  color: #323232;
+  cursor: pointer;
+}
+.topbar-shop-class li a:active,.topbar-shop-class li a:hover{
+  color: #ff5000;
+}
+.topbar-active{
+  color: #ff5000!important;
+  font-weight: bold;
+}
+.topbar-active a{
+  color: #ff5000!important;
+  font-weight: bold;
+}
+.topbar-book-content{
+  position: relative;
+}
+
+.topbar-book-types{
+  position: absolute;
+  height: 550px;
+  border: 2px solid #ff5000;
+  border-top:none;
+  padding: 0px;
+  display: none;
+  z-index: 999999;
+}
+.topbar-book-types > ul{
+  border-bottom: 0px;
+}
+.topbar-book-types > ul > li{
+  padding: 0px 10px; 
+}
+.topbar-book-types > ul > li:hover{
+  background-color: #ffe4dc;
+}
+.topbar-book-types > ul >li:last-child{
+  font-size: 12px;
+  text-align: right;
+  color: #ff5000;
+  border-bottom: none;
+  cursor: pointer;
+}
+.topbar-book-types > ul >li:last-child:hover{
+  background-color:white;
+  color: red;
+}
+.topbar-book-types p{
+  margin: 0px;
+  padding: 8px 0px;
+  color: #606060;
+  font-weight: bold;
+}
+.topbar-book-types ol{
+  margin: 0px;
+  padding: 0px;
+  font-size: 12px;
+}
+.topbar-slash{
+  overflow:hidden; 
+  text-overflow:ellipsis;
+  display:-webkit-box; 
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2; 
+}
+.topbar-slash > li{
+  margin-bottom: 4px;
+}
+.topbar-slash > li + li:before {
+  content: " ";
+  padding: 0 2px;
+  color: #ccc;
+}
+.topbar-book-types a{
+  color: #666;
+}
+.topbar-book-types a:hover{
+  color: #ff5000;
+}
+.topbar-types-detail{
+  position: absolute;
+  top: -2px;
+  border: 2px solid #ff5000;
+  height: 552px;
+  margin-left: 100%;
+  width: 300%;
+  background-color: white;
+  z-index: 99999;
+  display: none;
+}
+.topbar-detail-types{
+  margin: 8px 20px;
+}
+.topbar-detail-types:not(:first-child){
+  padding-top: 10px;
+}
+.topbar-detail-types>p{
+  border-bottom: 1px solid #dedede;
+  padding: 0px;
+  font-size:12px;
+}
+.topbar-detail-types>ul{
+  list-style: none;
+  font-size: 12px;
+  margin: 0px;
+  padding: 0px;
+}
+.topbar-detail-types>ul>li{
+  display: inline-block;
+  padding: 8px 6px 0px 6px;
+}

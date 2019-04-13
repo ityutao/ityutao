@@ -1,0 +1,21 @@
+@charset "utf-8";
+.base-shop-foot {
+    margin-top: 0px;
+}
+.pl-bg{
+    padding-bottom: 30px;
+}
+.pl-pressList{
+    padding: 0px;
+}
+.pl-pressList caption{
+    text-align: left;
+    font-size: 14px;
+    padding: 6px;
+    background-color: #eeeeee;
+    border: 1px solid #Ddd;
+}
+.pl-pressList a{
+    font-size: 12px;
+    color: #666;
+}

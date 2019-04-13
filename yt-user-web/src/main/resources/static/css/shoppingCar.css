@@ -1,0 +1,235 @@
+.content{
+    margin-top:30px
+}
+.content .process{
+    list-style: none;
+    display: flex;
+    font-size: 18px;
+    padding-left:8px;
+    margin-bottom: 20px;
+}
+.content .process li{
+    height:36px;
+    line-height: 36px;
+    text-align: center;
+    font-size:14px;
+    /* border:1px solid #dd514c; */
+    background-color: #dddddd;
+    cursor: pointer;
+}
+.content .process li:first-child{
+    border-radius:18px 0 0 17px;
+}
+.content .process li:last-child{
+    border-radius:0 17px 17px 0;
+}
+.content .process li.active{
+    background-color: #dd514c;
+    color: white;
+    font-weight: bolder;
+}
+.content .title{
+    height:40px;
+    list-style: none;
+    display: flex;
+    font-size: 18px;
+    padding-left:8px;
+}
+.content .title .info{
+    color:#dd514c;
+}
+.content .title li{
+    height:40px;
+    line-height: 40px;
+}
+.content .title li:first-child{
+    color:#dd514c;
+}
+.content .total{
+    width:100%;
+    height:40px;
+    list-style: none;
+    display: flex;
+    font-size: 12px;
+    border:1px solid rgba(207, 205, 205, 0.5);
+    padding-left:0;
+    margin-left:0px;
+}
+.content .total li{
+    height:40px;
+    line-height: 40px;
+}
+.content .total li:nth-child(3),.content .list li:nth-child(3){
+    padding-left:50px;
+}
+.content .total li:nth-child(1) span:first-child{
+    position: relative;
+    top:2px;
+    margin-right: 16px;
+}
+.content .list{
+    width: 100%;
+    height: 120px;
+    list-style: none;
+    display: flex;
+    font-size: 12px;
+    border: 1px solid rgba(207, 205, 205, 0.5);
+    padding-left: 0;
+    margin-left: 0px;
+    padding: 10px 0px;
+    border-top: none;
+}
+.content .list li:nth-child(1) span:first-child{
+    position: relative;
+    top:2px;
+    margin-right: 10px;
+}
+.content .list li{
+    height:95px;
+    line-height: 95px;
+}
+.content .list .img{
+    border:1px solid rgba(207, 205, 205, 0.5);
+    padding:36px 10px;
+}
+.content .list img{
+    width:64px;
+    height: 78px;
+}
+.content .list .num{
+    font-size:16px;
+}
+.content .list .num span:nth-child(1),.content .list .num span:nth-child(3){
+    width:20px;
+    height:10px;
+    border:1px solid rgba(207, 205, 205, 0.5);
+    font-size:16px;
+    padding:2px 8px;
+    cursor: pointer;
+}
+.content .list .num span:nth-child(2){
+    width:40px;
+    height:10px;
+    padding:2px 15px;
+    font-size:16px;
+    border:1px solid rgba(207, 205, 205, 0.5);
+}
+.content .list .price{
+    font-size:16px;
+}
+.content .list li:nth-child(6){
+    color:#dd514c;
+}
+.content .end{
+    width:100%;
+    height:60px;
+    list-style: none;
+    display: flex;
+    font-size: 12px;
+    border:1px solid #eeeeee;
+    padding-left:0;
+    margin-left:0px;
+    margin-top:20px;
+    background: #eeeeee;
+}
+.content .end li{
+    height:60px;
+    line-height: 60px;
+}
+.content .end li.price p{
+    text-align: right; 
+    margin: 0px;
+    height: 30px;
+    line-height: 30px;
+}
+.content .end li.price .num{
+    color:#dd514c;
+}
+.content .end li.price .price{
+    color:#dd514c;
+    font-size:20px;
+}
+.content .end li .acount{
+    height:100%;
+    color:white;
+    font-size:22px;
+    font-weight: 500;
+    text-align: center;
+    background: rgba(114, 111, 111, 0.5);
+    cursor: not-allowed;
+}
+.content .end li .acount.car-active{
+    background: #dd514c;
+    cursor: pointer;
+}
+.content .end li:nth-child(1) span:first-child{
+    position: relative;
+    top:2px;
+    margin-right: 6px;
+}
+.car-end{
+    margin-bottom: 20px;
+}
+.content .address-list{
+    list-style: none;
+    margin-bottom: 40px;
+}
+.content .address-list li{
+    padding-left: 80px;
+    height: 40px;
+    line-height: 40px;
+}
+.content .address-list li span{
+    vertical-align: middle;
+    margin-right: 10px;
+    font-size: 12px;
+}
+.content .address-list li span.address{
+    margin-left: 10px;
+}
+.content .address-list li span.name,.content .address-list li span.phone{
+    color: #666666;
+}
+.content .address-list li span.state{
+    color: #666666;
+    font-weight: 700;
+}
+.content .address-list li.active{
+    border: 1px solid #F37B1D;
+    background-color: rgba(243, 123, 29, 0.1);
+    position: relative;
+}
+.content .address-list li.active::before{
+    content:"寄送至：";
+    position: absolute;
+    left: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #dd514c;
+}
+.content .address-list li.active span{
+    font-size: 14px;
+}
+.content .user-info{
+    list-style: none;
+    padding-left: 8px;
+    color: #444444;
+}
+.content .user-info .tip{
+    color: #dd514c;
+    font-size: 18px;
+    display: inline-block;
+    width: 80px;
+    text-align: justify;
+    line-height: 0px;
+    margin-bottom: 14px;
+}
+.content .user-info .tip::after{
+    content: " ";
+    display: inline-block;
+    width: 100%;
+}
+.scavenging-tip{
+    font-size: 24px;
+    color: #dd514c;
+}

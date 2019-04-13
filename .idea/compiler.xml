@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="yt-book-api" />
+        <module name="yt-book-service" />
+        <module name="yt-book-web" />
+        <module name="yt-user-api" />
+        <module name="yt-user-service" />
+        <module name="yt-user-web" />
+        <module name="yt02common" />
+        <module name="yt02managermapper" />
+        <module name="yt02managerservice" />
+        <module name="yt02managerweb" />
+        <module name="yt02utils" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="test-user-service" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="yt-book-service" options="-parameters" />
+      <module name="yt-book-web" options="-parameters" />
+      <module name="yt-user-service" options="-parameters" />
+      <module name="yt-user-web" options="-parameters" />
+      <module name="yt02managerweb" options="-parameters" />
+    </option>
+  </component>
+</project>

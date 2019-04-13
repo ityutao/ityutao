@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itany.mapper.ManagerUserMapper">
+
+    <sql id="ManagerUser">
+        id,username,password,supplierid
+    </sql>
+    <select id="login" parameterType="com.itany.pojo.ManagerUser" resultType="com.itany.pojo.ManagerUser">
+        select
+          <include refid="ManagerUser"></include>
+        from
+          t_manager_user
+        where
+          username=#{username} and password=#{password};
+    </select>
+</mapper>

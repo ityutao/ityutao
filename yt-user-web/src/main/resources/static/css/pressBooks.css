@@ -1,0 +1,142 @@
+@charset "utf-8";
+.base-shop-foot {
+    margin-top: 0px;
+}
+.pb-bg{
+    padding-bottom: 30px;
+}
+.pb-list{
+    margin-left: -1.5rem;
+}
+.pb-list .press-info{ 
+    padding: 0px;
+    margin-bottom: 20px;
+    padding-left: 1.5rem;
+}
+.pb-list .press-info .content{
+    border: 6px solid #eee;
+    height: 384px;
+}
+.pb-list .press-info .title{
+    font-size: 22px;
+    background-color: #ff5000;
+    margin: -6px -6px 0px -6px;
+    color: white;
+    font-weight: bold;
+    padding: 14px 20px;
+}
+.pb-list .press-info .press{
+    position: relative;
+}
+.pb-list .press-info .press .logo{
+    float: left;
+    width: 50%;
+    margin: 20px 10px 20px 20px;
+}
+.pb-list .press-info .press .logo img{
+    max-width: 100%;
+}
+.pb-list .press-info .press .info{
+    margin: 18px;
+    text-indent: 28px;
+    font-size: 14px;
+    line-height: 36px;
+    height: 288px;
+}
+.pb-list .press-info .press .info p{
+   margin: 0px;
+}
+.pb-list .am-u-sm-3{
+    padding-right: 0px;
+}
+.pb-list .book{
+    border: 6px solid #eee;
+    height: 384px;
+    margin-bottom: 20px;
+}
+.pb-list .book .bookCover{
+    text-align: center;
+    padding: 20px 10px 10px;
+    line-height: 200px;
+}
+.pb-list .book .bookCover img{
+    max-height: 200px;
+    max-width: 200px;
+}
+.pb-list .book .bookInfo{
+    padding: 0 20px;
+}
+.pb-list .book .bookName{
+    line-height: 24px;
+    height: 24px;
+    overflow: hidden;
+    font-size: 14px;
+    margin: 0px;
+}
+.pb-list .book a {
+    text-decoration: none;
+    color: #333;
+    outline: none;
+}
+.pb-list .book .authorPublisher {
+    color: #666666;
+    height: 22px;
+    overflow: hidden;
+    line-height: 22px;
+}
+.pb-list .book .authorPublisher b {
+    font-weight: normal;
+    font-size: 12px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.pb-list .book .authorPublisher b.author {
+    margin-right: 8px;
+    width: 125px;
+}
+.pb-list .book .authorPublisher b.publisher {
+    float: right;
+    padding-top: 2px;
+}
+.pb-list .book .priceWrap {
+    overflow: hidden;
+    line-height: 28px;
+    height: 28px;
+    overflow: hidden;
+}
+.pb-list .book .priceWrap .sellPrice {
+    float: left;
+    color: #e60000;
+    font-size: 16px;
+    font-family: 'Microsoft YaHei';
+}
+.pb-list .book .priceWrap .sellPrice span {
+    font-size: 24px;
+    font-family: Arial;
+    margin: 0 5px 0 3px;
+}
+.pb-list .book .priceWrap .price {
+    float: right;
+}
+.pb-list .book .priceWrap .price span {
+    font-size: 14px;
+    font-family: 'Microsoft YaHei';
+    color: #333;
+}
+.pb-list .book .buyButton a {
+    margin-top: 10px;
+    display: block;
+    height: 36px;
+    background: #ff5000;
+    color: #fff;
+    font-size: 18px;
+    font-family: 'Microsoft YaHei';
+    text-align: center;
+    line-height: 36px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+
+

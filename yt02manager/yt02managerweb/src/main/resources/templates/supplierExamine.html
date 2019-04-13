@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>审核列表(供应商)</title>
+    <link rel="stylesheet" type="text/css" href="/manager/easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="/manager/easyui/themes/icon.css">
+    <script type="text/javascript" src="/manager/easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="/manager/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript">
+	    //工具栏
+	    var toolbar = [{
+	        text: '添加',
+	        iconCls: 'icon-edit',
+	        handler: function () {  $('#dd').dialog('open');}
+	    }];
+	   $(function(){
+	       $('#booklist').datagrid({  
+				title:'审核列表',  
+				iconCls:'icon-save',   
+				url:'/manager/examine/findFuzzAll',
+				columns:[
+				    [
+					{field:'title',title:'审核标题',width:100,align:'center'},
+					{field:'info',title:'审核备注',width:200,align:'center'},
+					{field:'flag',title:'审核状态',width:80,align:'center',formatter:function(value){
+                            var str="";
+                            if(1==value){
+                                str="审核通过";
+                            }
+                            if(3==value){
+                                str="审核不通过";
+                            }
+                            if(2==value){
+                                str="待审核";
+                            }
+                            return str;
+                        }
+                    },
+                    {field:'number',title:'审核详情',width:200,align:'center'},
+					{field:'book',title:'书籍详情',width:200,align:'center',formatter:function(value,row,index){
+                            // var roles='';
+                            // for(var i=0;i<row.roleList.length;i++)
+                            // {
+                            //     roles+=row.roleList[i].name+',';
+                            // }
+                            // return roles;
+					          return "<a href=''>查看</a>";
+					}}					
+				]
+                ],
+				toolbar: toolbar,
+				pagination: true,//表示在datagrid设置分页
+               	pageSize: 5,
+				singleSelect:true,
+                pageList: [5,10,20]
+			});
+
+		 //初始化查询栏
+		 $("#submit_search").linkbutton({ iconCls: 'icon-search', plain: true })
+            .click(function () {
+                $('#booklist').datagrid({
+                    queryParams:{
+                        bookName: $('#bookName').val(),
+                        ISBN: $('#ISBN').val()
+                    } });   //点击搜索
+            });
+          
+          //初始化修改窗口  
+         $('#dd').dialog({
+			    title: 'My Dialog',
+			    width: 700,
+			    height: 500,
+			    closed: true,
+			    cache: false,
+			    href: '',
+			    modal: true,
+			    iconCls: 'icon-save',
+                buttons: [{
+                    text:'提交',
+                    iconCls:'icon-ok',
+                    handler:function(){
+                        var form = $("#ff")[0];
+                        // var imgurl = getObjectURL($("#fileN")[0].files[0]);
+                        var formData = new FormData(form);
+                        // var formData=new FormData(formData);
+                        // formData.append("imgUrl",$("#fileN")[0].files[0]);
+                        // formData.append("bookIntroduce",$("#bookIntroduce").val());
+                        // formData.append("authorIntroduce",$("#authorIntroduce").val());
+                        formData.append("file",$("#fileN")[0].files[0]);
+                        $.ajax({
+                            url:'/manager/book/addBook',
+                            type:'post',
+                            dataType:"json",
+                            data:formData,
+                            contentType:false, // 告诉jquery不要设置content-Type头
+                            processData:false,//告诉jquery 不要去处理请求参数 url-encode
+                            success:function(data){
+                                if(data.status){
+                                    location.reload();
+                                }else {
+                                    alert(data);
+                                }
+                            }
+                        });
+                    }
+                },{
+                    text:'关闭',
+                    handler:function(){
+                        alert('cancel');
+                    }
+                }]
+			});
+
+            
+	   });
+	</script>
+</head>
+<body>
+   <form name="searchform" method="post" action="" id ="searchform">
+    <td width="70" height="30"><strong>审核查询：</strong></td>
+    <td height="30">
+        <input type="text" name="bookName" id="bookName" size=20 placeholder="书籍名称"/>
+        <input type="text" name="ISBN" id="ISBN" size=20 placeholder="ISBN"/>
+    </td>
+	<td>
+	  <button type="button" id="submit_search">查询</button>
+	</td>
+  </form>
+  <table id="booklist"></table>
+    <div id="dd">
+           <div align="center" style="margin-top: 30px">
+            <form id="ff" enctype="multipart/form-data">
+            <div style="margin-bottom:20px">
+                <input class="easyui-textbox" name="bookName" style="width:50%" data-options="label:'书籍名称:',required:true">
+            </div>
+			 <div style="margin-bottom:20px">
+                <input class="easyui-textbox" name="ISBN" style="width:50%" data-options="label:'ISBN:',required:true,validType:'email'">
+            </div>
+            <div style="margin-bottom:20px">
+                <input class="easyui-textbox" name="price" style="width:50%" data-options="label:'单价:',required:true,validType:'email'">
+            </div>
+			<div style="margin-bottom:20px">
+                <input class="easyui-textbox" name="number" style="width:50%" data-options="label:'数量:',required:true,validType:'email'">
+            </div>
+            <div style="margin-bottom:20px">
+                <input class="easyui-textbox" name="groupPrice" style="width:50%" data-options="label:'团购价:',required:true">
+            </div>
+			 <div style="margin-bottom:20px">
+                <input class="easyui-textbox" name="layout" style="width:50%" data-options="label:'版次:',required:true">
+            </div>
+			<div style="margin-bottom:20px">
+                <input class="easyui-textbox" name="register" style="width:50%" data-options="label:'册数:',required:true">
+            </div>
+			<div style="margin-bottom:20px">
+                <input class="easyui-textbox" name="weight" style="width:50%" data-options="label:'重量:',required:true">
+            </div>
+            <div style="margin-bottom:20px">
+                <input class="easyui-textbox" name="bookIntroduce" id="bookIntroduce" style="width:50%;height:60px" data-options="label:'书籍简介:',multiline:true">
+            </div>
+            <div style="margin-bottom:20px">
+                <input class="easyui-textbox" name="authorIntroduce" id="authorIntroduce" style="width:50%;height:60px" data-options="label:'作者简介:',multiline:true">
+            </div>
+                <div style="margin-bottom:20px">
+                    封面图片:&nbsp;&nbsp;&nbsp;&nbsp; <input id="fileN" type="file" />
+                </div>
+            </form>
+           </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,126 @@
+@charset "utf-8";
+.base-shop-foot {
+    margin-top: 0px;
+}
+.ts-bg{
+    background-color: #F8F8F8;
+    padding-bottom: 30px;
+}
+.ts-seach{
+    padding-left: 0px;
+}
+.ts-seach-line{
+    position: relative;
+    border-bottom: 1px solid #ccc;
+}
+.ts-seach-menu h4{
+    display: inline-block;
+    width: 88px;
+    height: 40px;
+    line-height: 40px;
+    color: #666;
+    font-weight: bold;
+    font-size: 14px;
+    font-family: "Microsoft YaHei";
+    margin: 0px;
+    position: absolute;
+}
+.ts-seach-menu ul{
+    display: inline-block;
+    list-style: none;
+    line-height: 40px;
+    font-size: 14px;
+    padding: 0px;
+    margin: 0px;
+    padding-left: 88px;
+}
+.ts-seach-menu li{
+    display: inline-block;
+    cursor: pointer;
+    margin: 0 38px 0 0;
+}
+.ts-seach-menu .ts-active{
+    color: #ff5500;
+}
+
+.ts-list{
+    padding-top: 10px;
+}
+.ts-list .am-panel{
+    margin: 0px;
+}
+.ts-list .name{
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+.ts-border{
+    border-bottom: 2px solid #cccccc;
+}
+.ts-list .name span:first-child{
+    color: #ff5000;
+    font-size: 24px;
+    font-weight: bold;
+    height: 50px;
+}
+.ts-list .name span:last-child{
+    color: #eeeeee;
+    font-size: 12px;
+    font-weight: bold;
+    float: right;
+    height: 50px;
+    line-height: 50px;
+    padding-right: 14px;
+}
+.ts-list .name span:last-child a{
+    color: #999999;
+}
+.ts-list .am-panel-hd{
+    padding: 0px;
+}
+.ts-list .am-panel-bd{
+    padding: 8px;
+}
+.ts-list img{
+    width: 100%;
+    height: 260px;
+}
+.ts-list .desc{
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}
+.ts-list .price{
+    margin: 0px 8px;
+    position: relative;
+    border-top: 1px solid #ccc;
+    padding: 16px 0px 8px;
+}
+.ts-list .price .new-price{
+    color: #333333;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: 'Microsoft YaHei';
+}
+.ts-list .price .new-price span:first-child{
+    color: #e70b1c;
+    font-size: 26px;
+    margin-right: 20px;
+    font-weight: normal;
+}
+.ts-list .price .old-price{
+    color: #666;
+    height: 35px;
+    line-height: 35px;
+    font-size: 12px;
+}
+.ts-list .price .old-price span:first-child{
+    margin-right: 20px;
+}
+.ts-list .price .btn-price{
+    position: absolute;
+    bottom: 16px;
+    right: 0px;
+}

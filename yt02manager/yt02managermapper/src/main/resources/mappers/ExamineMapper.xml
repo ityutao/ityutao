@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itany.mapper.ExamineMapper">
+
+    <resultMap id="ExamineResultMap" type="com.itany.pojo.Examine">
+        <id column="id" property="id"></id>
+        <result column="bookid" property="bookId"></result>
+        <result column="number" property="number"></result>
+        <result column="supplierid" property="supplierId"></result>
+        <result column="title" property="title"></result>
+        <result column="flag" property="flag"></result>
+        <result column="info" property="info"></result>
+            <association column="bookid" property="book" javaType="Book">
+                <id property="id" column="b.id"></id>
+                <result property="bookName" column="b.bookame"></result>
+                <result property="author" column="b.author"></result>
+                <result property="publishDate" column="b.publishdate"></result>
+                <result property="groupPrice" column="b.groupprice"></result>
+                <result property="price" column="b.price"></result>
+                <result property="format" column="b.format"></result>
+                <result property="pageNumber" column="b.pagenumber"></result>
+                <result property="ISBN" column="b.ISBN"></result>
+                <result property="barcode" column="b.barcode"></result>
+                <result property="layout" column="b.layout"></result>
+                <result property="printingNumber" column="b.printingnumber"></result>
+                <result property="register" column="b.register"></result>
+                <result property="weight" column="b.weight"></result>
+                <result property="bookIntroduce" column="b.bookintroduce"></result>
+                <result property="authorIntroduce" column="b.authorintroduce"></result>
+                <result property="catalog" column="b.catalog"></result>
+                <result property="typeId" column="b.typeid"></result>
+                <result property="createTime" column="b.createtime"></result>
+                <result property="pressId" column="b.pressid"></result>
+                <result property="number" column="b.number"></result>
+                <result property="imgUrl" column="b.imgurl"></result>
+                <result property="flag" column="b.flag"></result>
+                <result property="recommend" column="b.recommend"></result>
+            </association>
+    </resultMap>
+
+    <sql id="examineColumn">
+      e.id,e.bookid,e.number, e.supplierid, e.title, e.flag,e.info,
+      b.id 'b.id', b.bookname, b.ISBN, b.price, b.number 'b.number', b.groupprice, b.layout,
+      b.register, b.weight, b.bookintroduce, b.authorintroduce, b.imgurl
+    </sql>
+
+
+    <insert id="insertExamine">
+        insert into
+          t_examine
+          (bookid, number, info, supplierid, title, flag)
+        VALUES
+          (#{bookId},#{number},#{info},#{supplierId},#{title},#{flag})
+    </insert>
+
+
+    <select id="findAllExamine" parameterType="com.itany.pojo.Examine" resultMap="ExamineResultMap">
+        select <include refid="examineColumn"></include>
+        from t_examine e
+        left join t_book b
+        on e.bookid = b.id
+        <where>
+            <if test="book != null">
+                <if test=" book.bookName !=null and book.bookName !='' ">
+                    and b.bookname  like concat('%',#{book.bookName},'%')
+                </if>
+                <if test=" book.ISBN !=null and book.ISBN !='' ">
+                    and b.ISBN  like concat('%',#{book.ISBN},'%')
+                </if>
+            </if>
+            <if test=" supplierId !=null ">
+                and e.supplierid = #{supplierId}
+            </if>
+        </where>
+    </select>
+
+
+    <update id="updateFlag" parameterType="com.itany.pojo.Examine">
+        update
+          t_examine
+        set
+          flag=#{flag},info = #{info}
+        where
+          id=#{id}
+    </update>
+</mapper>

@@ -1,0 +1,228 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>书籍列表</title>
+    <link rel="stylesheet" type="text/css" href="/manager/easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="/manager/easyui/themes/icon.css">
+    <script type="text/javascript" src="/manager/easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="/manager/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript">
+	    //工具栏
+	    var toolbar = [{
+	        text: '修改',
+	        iconCls: 'icon-edit',
+	        handler: function () {
+	            $('#dd').dialog('open');
+                var book = $('#booklist').datagrid('getSelected');
+                $("#id").val(book.id);
+                $.ajax({
+                    type:"post",
+                    url:"/manager/book/findById",
+                    dataType:"json",
+                    data:{"id":book.id},
+                    success:function (data) {
+                        console.log(data);
+                        if(data.status){
+                            console.log(data);
+                            // $("#bookName1").val(data.data.bookName);
+                            $("#bookName1").textbox('setValue',data.data.bookName);
+                            $("#price").textbox('setValue',data.data.price);
+                            $("#groupPrice").textbox('setValue',data.data.groupPrice);
+                            $("#bookIntroduce").textbox('setValue',data.data.bookIntroduce);
+                            $("#authorIntroduce").textbox('setValue',data.data.authorIntroduce);
+                        }else{
+                            alert(data.msg);
+                        }
+                    }
+                })
+	        }
+	    }, '-', {
+	        text: '启用',
+	        iconCls: 'icon-ok',
+	        handler: function () {
+                var book = $('#booklist').datagrid('getSelected');
+                $.ajax({
+                    type:"post",
+                    url:"/manager/book/modifyEnable",
+                    dataType:"json",
+                    data:{"id":book.id},
+                    success:function (result) {
+                        if(result.status){
+                            location.reload();
+                        }else{
+                            alert(data.msg);
+                        }
+
+                    }
+                })
+	        }
+	    }, '-', {
+	        text: '禁用',
+	        iconCls: 'icon-cancel',
+	        handler: function () {
+                var book = $('#booklist').datagrid('getSelected');
+                $.ajax({
+                    type:"post",
+                    url:"/manager/book/modifyDisable",
+                    dataType:"json",
+                    data:{"id":book.id},
+                    success:function (result) {
+                        if(result.status){
+                            location.reload();
+                        }else{
+                            alert(data.msg);
+                        }
+
+                    }
+                })
+            }
+	    }];
+	   $(function(){
+	       $('#booklist').datagrid({
+				title:'书籍列表',
+				iconCls:'icon-save',
+				url:'/manager/book/findAll',
+				columns:[
+				    [
+					{field:'bookName',title:'名称',width:100,align:'center'},
+					{field:'author',title:'作者',width:200,align:'center'},
+					{field:'price',title:'单价',width:80,align:'center'},
+					{field:'iSBN',title:'ISBN',width:200,align:'center'},
+					{field:'row.press.name',title:'出版社',width:200,align:'center',formatter:function(value,row){
+                           return row.press.name;
+                        }},
+	                {field:'row.supplier.name',title:'供货商',width:500,align:'center',formatter:function(value,row){
+                            return row.supplier.name;
+                        }},
+	                // {field:'price',title:'供货商',width:500,align:'center'},
+                    {field:'flag',title:'状态',width:100,align:'center',formatter:function(value){
+                            var str="";
+                            if(value==1){
+                                str="已经审核";
+                            }else{
+                                str="待审核";
+                            }
+                            return str;
+                        }}
+				]
+                ],
+				toolbar: toolbar,
+				pagination: true,//表示在datagrid设置分页
+               	pageSize: 5,
+				singleSelect:true,
+                pageList: [5,10,20]
+			});
+
+		 //初始化查询栏
+		 $("#submit_search").linkbutton({ iconCls: 'icon-search', plain: true }).click(function () {
+                $('#booklist').datagrid({
+                    queryParams:{
+                        bookName: $('#bookName').val(),
+                        ISBN: $('#ISBN').val()
+                    }
+                });   //点击搜索
+            });
+
+          //初始化修改窗口
+         $('#dd').dialog({
+			    title: 'My Dialog',
+			    width: 700,
+			    height: 500,
+			    closed: true,
+			    cache: false,
+			    href: '',
+			    modal: true,
+			    iconCls: 'icon-save',
+                buttons: [{
+                    text:'提交',
+                    iconCls:'icon-ok',
+                    handler:function(){
+                        var form = $("#ff")[0];
+                        var formData = new FormData(form);
+                        formData.append("file",$("#fileN")[0].files[0]);
+                        $.ajax({
+                            type:"post",
+                            url:"/manager/book/modifyById",
+                            dataType:"json",
+                            data:formData,
+                            contentType:false,
+                            processData:false,
+                            success:function (data) {
+                                if(data.status){
+                                    location.reload();
+                                }else{
+                                    alert(data.msg);
+                                }
+                            }
+                        });
+                    }
+                },{
+                    text:'关闭',
+                    handler:function(){
+                        alert('cancel');
+                    }
+                }]
+			});
+
+	   });
+	</script>
+</head>
+<body>
+   <form name="searchform" method="post" action="" id ="searchform">
+    <td width="70" height="30"><strong>书籍查询：</strong></td>
+    <td height="30">
+        <input type="text" name="bookName" id="bookName" size=20 placeholder="书籍名称"/>
+        <input type="text" name="ISBN" id="ISBN" size=20 placeholder="ISBN"/>
+        <select name="search_type" id="search_type" >
+            <option value="-1">请选择出版社</option>
+            <option value="be_name" >出版社1</option>
+            <option value="be_intro">出版社2</option>
+            <option value="be_intro">出版社3</option>
+        </select>
+        <select name="search_type" id="search_type" >
+            <option value="-1">请选择供应商</option>
+            <option value="be_name" >供应商1</option>
+            <option value="be_intro">供应商2</option>
+            <option value="be_intro">供应商3</option>
+        </select>
+        编辑推荐:<input type="checkbox" name="" value=""/>
+        本周精选:<input type="checkbox" name="" value=""/>
+    </td>
+	<td>
+	  <a id="submit_search">搜索</a>
+	</td>
+  </form>
+  <table id="booklist"></table>
+    <div id="dd">
+           <div align="center" style="margin-top: 30px">
+            <form id="ff" method="post">
+            <div style="margin-bottom:20px">
+                <input type="hidden" id="id" name="id">
+                <input class="easyui-textbox" name="bookName" id="bookName1" style="width:50%" data-options="label:'书籍名称:',required:true">
+            </div>
+            <div style="margin-bottom:20px">
+                <input class="easyui-textbox" name="price" id="price" style="width:50%" data-options="label:'单价:',required:true,validType:'email'">
+            </div>
+            <div style="margin-bottom:20px">
+                <input class="easyui-textbox" name="groupPrice" id="groupPrice" style="width:50%" data-options="label:'团购价:',required:true">
+            </div>
+            <div style="margin-bottom:20px">
+                <input class="easyui-textbox" name="bookIntroduce" id="bookIntroduce" style="width:50%;height:60px" data-options="label:'书籍简介:',multiline:true">
+            </div>
+             <div style="margin-bottom:20px">
+                <input class="easyui-textbox" name="authorIntroduce" id="authorIntroduce" style="width:50%;height:60px" data-options="label:'作者简介:',multiline:true">
+            </div>
+             <div style="margin-bottom:20px">
+               封面图片:&nbsp;&nbsp;&nbsp;&nbsp; <input  type="file" id="fileN"/>
+            </div>
+            <div style="margin-bottom:20px">
+               编辑推荐:<input type="checkbox" name="" value=""/>
+               本周精选:<input type="checkbox" name="" value=""/>
+            </div>
+
+        </form>
+           </div>
+    </div>
+</body>
+</html>
